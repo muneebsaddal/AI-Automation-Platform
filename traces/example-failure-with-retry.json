@@ -1,0 +1,50 @@
+{
+  "run_id": "e5f6g7h8",
+  "raw_input": "Deploy payment-service v1.9 to production",
+  "plan": ["deploy_service payment-service v1.9 to production"],
+  "execution_results": [
+    {
+      "tool": "deploy_service",
+      "service": "payment-service",
+      "version": "v1.9",
+      "environment": "production",
+      "success": false,
+      "message": "Deploy failed: health check timeout for payment-service",
+      "timestamp": "2024-11-01T11:00:02Z"
+    }
+  ],
+  "structured_output": {
+    "status": "failure",
+    "summary": "payment-service v1.9 deploy to production failed with health check timeout",
+    "actions_taken": ["Attempted deploy of payment-service@v1.9 to production"],
+    "failures": [
+      {
+        "step": "deploy_service payment-service v1.9 to production",
+        "reason": "Health check timeout — service did not become healthy within SLA"
+      }
+    ],
+    "recommendations": [
+      "Check payment-service startup logs for errors",
+      "Verify resource limits are not causing OOMKill",
+      "Consider rollback to v1.8 if issue persists"
+    ]
+  },
+  "validation_errors": [],
+  "logs": [
+    {"timestamp": "2024-11-01T11:00:00Z", "agent": "planner", "level": "info", "message": "Plan created — 1 steps"},
+    {"timestamp": "2024-11-01T11:00:01Z", "agent": "executor", "level": "info", "message": "Step 1/1: deploy_service payment-service v1.9 to production"},
+    {"timestamp": "2024-11-01T11:00:02Z", "agent": "executor", "level": "warning", "message": "Tool deploy_service reported failure: Deploy failed: health check timeout for payment-service"},
+    {"timestamp": "2024-11-01T11:00:03Z", "agent": "validator", "level": "warning", "message": "1 hard failure(s) detected"},
+    {"timestamp": "2024-11-01T11:00:04Z", "agent": "orchestrator", "level": "warning", "message": "Retrying — attempt 1/2"},
+    {"timestamp": "2024-11-01T11:00:08Z", "agent": "executor", "level": "warning", "message": "Tool deploy_service reported failure: Deploy failed: health check timeout for payment-service"},
+    {"timestamp": "2024-11-01T11:00:09Z", "agent": "orchestrator", "level": "warning", "message": "Retrying — attempt 2/2"},
+    {"timestamp": "2024-11-01T11:00:13Z", "agent": "executor", "level": "warning", "message": "Tool deploy_service reported failure: Deploy failed: health check timeout for payment-service"},
+    {"timestamp": "2024-11-01T11:00:14Z", "agent": "validator", "level": "info", "message": "Validation done — run status: failed"}
+  ],
+  "status": "failed",
+  "retry_count": 2,
+  "max_retries": 2,
+  "started_at": "2024-11-01T11:00:00Z",
+  "completed_at": "2024-11-01T11:00:14Z",
+  "error": ""
+}
